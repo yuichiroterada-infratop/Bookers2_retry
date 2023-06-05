@@ -6,8 +6,16 @@ class ApplicationController < ActionController::Base
   end
   
   
-  private
+  protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up,keys:[:email])
   end
+  
+  def user_confirm
+    user = User.find(params[:id])
+    unless user == current_user
+      redirect_to user_path(current_user)
+    end
+  end
+  
 end
