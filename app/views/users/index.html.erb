@@ -1,5 +1,6 @@
 Users#index
 <div class="container">
+  <%= render "layouts/error", obj: @book %>
   <div class="row">
     <div class="col-md-3">
       <%= render "users/info", user: current_user %>

@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :user_confirm, only: [:edit, :update]
+  
   def index
     @book = Book.new
     @users = User.all
@@ -10,7 +12,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    user_confirm
     @user = User.find(params[:id])
   end
   
@@ -20,7 +21,7 @@ class UsersController < ApplicationController
       flash[:notice] = "You have updated user successfully!"
       redirect_to user_path(@user)
     else
-      render edit_user_path(@user)
+      render :edit
     end
     
   end
